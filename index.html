@@ -4,7 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>repofinder</title>
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="theme-color" content="#fff" />
+
     <link rel="stylesheet" href="css/style.css">
+    <link rel="manifest" href="./manifest.webmanifest">
 </head>
 
 <body>
@@ -20,6 +26,23 @@
 
     <!--js part-->
     <script src="js/index.js"></script>
+    <script>
+        
+        window.addEventListener('load', () => {
+            registerSW();
+        })
+
+        async function registerSW() {
+                if ('serviceWorker' in navigator) {
+                    try {
+                        await navigator.serviceWorker.register('./sw.js');
+                    } catch (e) {
+                        console.log(`SW registration failed`);
+                    }
+                }
+            }
+    </script>
+    <script src="./sw.js"></script>
 </body>
 
 </html>
